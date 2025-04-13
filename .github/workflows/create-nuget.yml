@@ -38,21 +38,24 @@ jobs:
             -sdk iphoneos${{ env.SDK }} \
             IPHONEOS_DEPLOYMENT_TARGET=12.0
           
-      - name: Create universal lib with lipo
+      - name: Create universal lib with lipo in dotnet-binding
         run: |
           lipo -create \
             ${{ env.SRC_FOLDER }}/build/Release-iphoneos/libMBProgressHUD.a \
             ${{ env.SRC_FOLDER }}/build/Release-iphonesimulator/libMBProgressHUD.a \
-            -output ./libMBProgressHUD.a
+            -output ./dotnet-binding/libMBProgressHUD.a
           lipo -info ./libMBProgressHUD.a
           
       - name: restore workload
+        working-directory: ./dotnet-binding
         run: dotnet workload restore
 
       - name: Build .NET binding project
+        working-directory: ./dotnet-binding
         run: dotnet build -c Release MBProgressHUD-dotnet.csproj
 
       - name: Pack NuGet
+        working-directory: ./dotnet-binding
         run: dotnet pack -c Release MBProgressHUD-dotnet.csproj
 
       - name: Upload .nupkg as artifact
@@ -61,4 +64,4 @@ jobs:
           name: nuget-package
           compression-level: '0'
           path:
-            /Users/runner/work/SDWebImage-dotnet/MBProgressHUD-dotnet/bin/Release/*.nupkg  
+            /Users/runner/work/MBProgressHUD-dotnet/dotnet-binding/MBProgressHUD-dotnet/bin/Release/*.nupkg  

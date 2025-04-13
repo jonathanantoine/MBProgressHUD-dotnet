@@ -24,11 +24,12 @@ var hub = new MTMBProgressHUD(controller.View)
 {
     Mode = MBProgressHUDMode.Text,
     Margin = 10f,
-    YOffset = 10f,
     RemoveFromSuperViewOnHide = true,
-    UserInteractionEnabled = false,
-    LabelText = "text to display"
+    UserInteractionEnabled = false
+    
 };
+
+hub.Label.Text = "text to display";
 
 controller.View.AddSubview(hub);
 hub.Show(true);

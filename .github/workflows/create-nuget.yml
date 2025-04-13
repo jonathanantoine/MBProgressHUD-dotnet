@@ -44,7 +44,7 @@ jobs:
             ${{ env.SRC_FOLDER }}/build/Release-iphoneos/libMBProgressHUD.a \
             ${{ env.SRC_FOLDER }}/build/Release-iphonesimulator/libMBProgressHUD.a \
             -output ./dotnet-binding/libMBProgressHUD.a
-          lipo -info ./libMBProgressHUD.a
+          lipo -info ./dotnet-binding/libMBProgressHUD.a
           
       - name: restore workload
         working-directory: ./dotnet-binding

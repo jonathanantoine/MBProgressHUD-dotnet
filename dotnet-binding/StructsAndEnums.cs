@@ -7,30 +7,30 @@ using UIKit;
 namespace MBProgressHUD {
     
     [Native]
-    public enum SDImageCacheType : long
+    public enum MBProgressHUDMode : long
     {
-        None = 0,
-        Disk,
-        Memory
+        Indeterminate,
+        Determinate,
+        DeterminateHorizontalBar,
+        AnnularDeterminate,
+        CustomView,
+        Text
     }
-    
-    [Flags]
+
     [Native]
-    public enum SDWebImageOptions : ulong
+    public enum MBProgressHUDAnimation : long
     {
-        RetryFailed = 1 << 0,
-        LowPriority = 1 << 1,
-        CacheMemoryOnly = 1 << 2,
-        ProgressiveDownload = 1 << 3,
-        RefreshCached = 1 << 4,
-        ContinueInBackground = 1 << 5,
-        HandleCookies = 1 << 6,
-        AllowInvalidSSLCertificates = 1 << 7,
-        HighPriority = 1 << 8,
-        DelayPlaceholder = 1 << 9,
-        TransformAnimatedImage = 1 << 10,
-        AvoidAutoSetImage = 1 << 11,
-        ScaleDownLargeImages = 1 << 12
+        Fade,
+        Zoom,
+        ZoomOut,
+        ZoomIn
+    }
+
+    [Native]
+    public enum MBProgressHUDBackgroundStyle : long
+    {
+        SolidColor,
+        Blur
     }
     
 }

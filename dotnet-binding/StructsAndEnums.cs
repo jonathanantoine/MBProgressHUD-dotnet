@@ -4,7 +4,7 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace MBProgressHUD {
+namespace MBProgressHUDMaui {
     
     [Native]
     public enum MBProgressHUDMode : long

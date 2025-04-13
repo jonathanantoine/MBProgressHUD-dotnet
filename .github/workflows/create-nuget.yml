@@ -63,5 +63,4 @@ jobs:
         with:
           name: nuget-package
           compression-level: '0'
-          path:
-            /Users/runner/work/MBProgressHUD-dotnet/dotnet-binding/MBProgressHUD-dotnet/bin/Release/*.nupkg  
+          path: /Users/runner/work/MBProgressHUD-dotnet/MBProgressHUD-dotnet/dotnet-binding/bin/Release/*.nupkg

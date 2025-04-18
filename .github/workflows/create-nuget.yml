@@ -23,28 +23,21 @@ jobs:
         with:
           dotnet-version: '9.x'
         
-      - name: Build MBProgressHUD for simulator
+        
+        
+        
+      - name: Build MBProgressHUD Framework
         run: |
           xcodebuild -project ${{ env.SRC_FOLDER }}/${{ env.PROJ_NAME }} \
-            -target "MBProgressHUD Static Library" \
-            -sdk iphonesimulator${{ env.SDK }} \
-            IPHONEOS_DEPLOYMENT_TARGET=12.0 \
-            EXCLUDED_ARCHS="arm64"
+            -target "MBProgressHUD Framework" \
 
-      - name: Build MBProgressHUD for device
-        run: |
-          xcodebuild -project ${{ env.SRC_FOLDER }}/${{ env.PROJ_NAME }} \
-            -target "MBProgressHUD Static Library" \
-            -sdk iphoneos${{ env.SDK }} \
-            IPHONEOS_DEPLOYMENT_TARGET=12.0
-          
-      - name: Create universal lib with lipo in dotnet-binding
-        run: |
-          lipo -create \
-            ${{ env.SRC_FOLDER }}/build/Release-iphoneos/libMBProgressHUD.a \
-            ${{ env.SRC_FOLDER }}/build/Release-iphonesimulator/libMBProgressHUD.a \
-            -output ./dotnet-binding/libMBProgressHUD.a
-          lipo -info ./dotnet-binding/libMBProgressHUD.a
+
+      - name: Upload .xcframework as artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: xcframework
+          compression-level: '1'
+          path:  ${{ env.SRC_FOLDER }}/*.xcframework
           
       - name: restore workload
         working-directory: ./dotnet-binding
@@ -63,4 +56,4 @@ jobs:
         with:
           name: nuget-package
           compression-level: '0'
-          path: /Users/runner/work/MBProgressHUD-dotnet/MBProgressHUD-dotnet/dotnet-binding/bin/Release/*.nupkg
+          path: ${{ env.SRC_FOLDER }}/dotnet-binding/bin/Release/*.nupkg

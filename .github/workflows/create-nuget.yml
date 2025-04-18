@@ -24,12 +24,11 @@ jobs:
           dotnet-version: '9.x'
         
         
-        
-        
       - name: Build MBProgressHUD Framework
         run: |
           xcodebuild -project ${{ env.SRC_FOLDER }}/${{ env.PROJ_NAME }} \
             -target "MBProgressHUD Framework" \
+            -sdk iphonesimulator${{ env.SDK }} \
 
 
       - name: Upload .xcframework as artifact

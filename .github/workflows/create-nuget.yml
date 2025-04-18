@@ -24,19 +24,31 @@ jobs:
           dotnet-version: '9.x'
         
         
-      - name: Build MBProgressHUD Framework
+      - name: Build MBProgressHUD iphonesimulator Framework
         run: |
           xcodebuild -project ${{ env.SRC_FOLDER }}/${{ env.PROJ_NAME }} \
             -target "MBProgressHUD Framework" \
             -sdk iphonesimulator${{ env.SDK }} \
 
+      - name: Build MBProgressHUD iphonesimulator Framework
+        run: |
+          xcodebuild -project ${{ env.SRC_FOLDER }}/${{ env.PROJ_NAME }} \
+            -target "MBProgressHUD Framework" \
+            -sdk iphoneos{{ env.SDK }} \
+
+      - name: Build xcframework
+        run: |
+          xcodebuild -create-xcframework \
+          -framework "${{ env.SRC_FOLDER }}/build/Release-iphonesimulator/MBProgressHUD.framework" \
+          -framework "${{ env.SRC_FOLDER }}/build/Release-iphoneos/MBProgressHUD.framework" \
+          -output ./dotnet-binding/MBProgressHUD.xcframework
 
       - name: Upload .xcframework as artifact
         uses: actions/upload-artifact@v4.6.2
         with:
           name: xcframework
           compression-level: '1'
-          path:  ${{ env.SRC_FOLDER }}/*.xcframework
+          path: ./dotnet-binding/MBProgressHUD.xcframework
           
       - name: restore workload
         working-directory: ./dotnet-binding

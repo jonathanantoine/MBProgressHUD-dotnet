@@ -34,7 +34,7 @@ jobs:
         run: |
           xcodebuild -project ${{ env.SRC_FOLDER }}/${{ env.PROJ_NAME }} \
             -target "MBProgressHUD Framework" \
-            -sdk iphoneos{{ env.SDK }} \
+            -sdk iphoneos${{ env.SDK }} \
 
       - name: Build xcframework
         run: |

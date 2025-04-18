@@ -8,7 +8,7 @@
     
     <!-- Nuget package -->
     <PackageId>com.jonathanantoine.MBProgressHUD</PackageId>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.1</Version>
     <Authors>Jonathan Antoine</Authors>
     <Title>MBProgressHUD for dotnet</Title>
     <PackageProjectUrl>https://github.com/jonathanantoine/MBProgressHUD-dotnet</PackageProjectUrl>
@@ -25,8 +25,8 @@
     <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="libMBProgressHUD.a">
-      <Kind>Static</Kind>
+    <NativeReference Include="MBProgressHUD.xcframework">
+      <Kind>Framework</Kind>
       <Frameworks>Foundation ImageIO CoreGraphics</Frameworks>
     </NativeReference>
   </ItemGroup>
